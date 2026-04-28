@@ -4,31 +4,20 @@
 
 # Humanize US — Natural American English Rewrite Harness v0.1
 
-Humanize US is a Claude Code skill that turns **AI-sounding English drafts** into **clean, natural US English** while preserving meaning. It is adapted from the original Korean project, but the taxonomy is rebuilt for English: stock LLM phrases, templated essay structure, over-polished cadence, generic abstraction, modal hedging, passive/nominalized prose, punctuation habits, and low rhythm variability.
+Humanize US is a Claude Code skill that turns **AI-sounding English drafts** into **clean, natural US English** while preserving meaning. It targets the patterns LLMs over-produce in English: stock phrases, templated essay structure, over-polished cadence, generic abstraction, modal hedging, passive and nominalized prose, punctuation tics, and uniformly smooth rhythm.
 
-This is **not** an “undetectable AI” tool. It does not promise detector evasion and should not be used to hide authorship where disclosure is required. The goal is editorial: better readability, more natural cadence, and tighter prose with a strict fidelity audit.
+This is **not** an "undetectable AI" tool. It does not promise detector evasion and should not be used to hide authorship where disclosure is required. The goal is editorial: better readability, more natural cadence, and tighter prose backed by a strict fidelity audit.
 
-This project is inspired by [epoko77-ai/im-not-ai](https://github.com/epoko77-ai/im-not-ai)
-
-## What changed from the Korean version
-
-| Area | Korean project | Humanize US version |
-|---|---|---|
-| Main signal | Translationese from English into Korean | Formulaic LLM English: stock phrases, list cadence, abstract nouns, over-explaining |
-| Rewrite target | Natural Korean | Natural **US English**, genre-aware |
-| Taxonomy | 10 Korean categories / 40+ patterns | 10 English categories / 50+ patterns |
-| Fast path | Korean quick rules | English quick rules with research-backed lexical, rhythm, and syntax signals |
-| Safety stance | Removes “AI tells” | Improves prose, preserves facts, avoids detector-evasion claims |
-| Added utility | Prompt harness only | Prompt harness + optional local style scanner script |
+Inspired by [epoko77-ai/im-not-ai](https://github.com/epoko77-ai/im-not-ai).
 
 ## Why English needs its own taxonomy
 
-English LLM writing often sounds “AI-ish” for different reasons than Korean writing. It leans on words like *delve*, *comprehensive*, *crucial*, and *transformative*; announces structure with “first/second/third”; overuses meta-phrases like “it is important to note”; and produces paragraphs that are smooth but strangely even. Recent work in AI-text forensics and stylometry points to lexical, grammatical, syntactic, punctuation, and variability features as useful signals, but also warns that detector accuracy is unstable across domains and paraphrasing. See [`research-foundation.md`](.claude/skills/humanize-english-us/references/research-foundation.md).
+English LLM writing tends to sound "AI-ish" for recognizable reasons. It leans on words like *delve*, *comprehensive*, *crucial*, and *transformative*; announces structure with "first/second/third"; overuses meta-phrases like "it is important to note"; and produces paragraphs that are smooth but strangely even. Recent work in AI-text forensics and stylometry treats lexical, grammatical, syntactic, punctuation, and variability features as useful signals — while also warning that detector accuracy is unstable across domains and paraphrasing. See [`research-foundation.md`](.claude/skills/humanize-english-us/references/research-foundation.md).
 
 ## Four non-negotiables
 
 1. **Fidelity first** — facts, claims, numbers, names, dates, quotes, citations, and legal/scientific wording stay intact.
-2. **Span-grounded editing** — every edit must connect to a detected pattern. No full rewrite just because the prose could be “better.”
+2. **Span-grounded editing** — every edit must connect to a detected pattern. No full rewrite just because the prose could be "better."
 3. **Genre match** — a business memo stays a memo; an academic paragraph stays academic; an op-ed stays an op-ed.
 4. **No over-polish** — changed-text ratio above 30% triggers review; above 50% triggers rollback or human review.
 
@@ -76,16 +65,16 @@ accept | rewrite_round_2 | rollback_and_rewrite | hold_and_report
 
 | ID | Category | Typical patterns |
 |---|---|---|
-| A | Meta-disclaimers and throat-clearing | “As an AI…,” “It is important to note,” “In today’s digital age” |
+| A | Meta-disclaimers and throat-clearing | "As an AI…," "It is important to note," "In today's digital age" |
 | B | Stock LLM vocabulary | delve, nuanced, robust, seamless, transformative, pivotal, unlock, leverage |
 | C | Mechanical structure | first/second/third, generic intro/body/conclusion, listicle cadence |
-| D | Generic abstraction | “various stakeholders,” “numerous benefits,” “wide range of applications” |
+| D | Generic abstraction | "various stakeholders," "numerous benefits," "wide range of applications" |
 | E | Rhythm uniformity | similar sentence lengths, smooth but flat paragraphs, no friction or emphasis |
-| F | Over-hedging | “may potentially be able to,” “could possibly help,” “it seems likely that” |
-| G | Passive and nominalized prose | “the implementation of,” “is characterized by,” “was conducted by” |
+| F | Over-hedging | "may potentially be able to," "could possibly help," "it seems likely that" |
+| G | Passive and nominalized prose | "the implementation of," "is characterized by," "was conducted by" |
 | H | Connector overuse | moreover, furthermore, consequently, ultimately, therefore at every turn |
 | I | Punctuation and formatting tells | em-dash habit, colon subtitles, excessive bold, emoji/checkmark bullets |
-| J | Over-balanced rhetoric | “not only…but also,” mirrored pairs, three-part symmetrical lists |
+| J | Over-balanced rhetoric | "not only…but also," mirrored pairs, three-part symmetrical lists |
 
 Full rules: [`ai-tell-taxonomy.md`](.claude/skills/humanize-english-us/references/ai-tell-taxonomy.md) and [`rewriting-playbook.md`](.claude/skills/humanize-english-us/references/rewriting-playbook.md).
 
@@ -177,4 +166,4 @@ Never rewrite these unless the user explicitly asks:
 
 ## Responsible-use note
 
-AI-detection research consistently shows fragility under domain shift, paraphrasing, and human/AI co-editing. This project therefore treats “AI tells” as **editing cues**, not truth claims about authorship. For schools, employers, publishers, courts, and regulated contexts, follow the applicable disclosure policy.
+AI-detection research consistently shows fragility under domain shift, paraphrasing, and human/AI co-editing. This project therefore treats "AI tells" as **editing cues**, not truth claims about authorship. For schools, employers, publishers, courts, and regulated contexts, follow the applicable disclosure policy.
